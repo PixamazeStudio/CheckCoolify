@@ -14,10 +14,15 @@ SECRET_KEY = 'django-insecure-your-secret-key-change-this-in-production'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = [
+    "http://erp.emeraldinterior.com",
+    "https://erp.emeraldinterior.com"
+]
 APPEND_SLASH = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+FORCE_SCRIPT_NAME = '/'
 
 USE_X_FORWARDED_HOST = True
 
