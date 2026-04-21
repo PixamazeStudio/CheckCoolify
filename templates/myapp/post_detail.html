@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} - My Django App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        .post-meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .post-content {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        a {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+        .btn-default {
+            background: #667eea;
+            color: white;
+        }
+        .btn-default:hover {
+            background: #764ba2;
+        }
+        .btn-edit {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-edit:hover {
+            background: #45a049;
+        }
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+        .btn-delete:hover {
+            background: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'post-list' %}" class="back-link">← Back to Posts</a>
+        
+        <h1>{{ post.title }}</h1>
+        
+        <div class="post-meta">
+            <strong>Published:</strong> {{ post.created_at|date:"F d, Y \a\t g:i A" }}<br>
+            <strong>Last Updated:</strong> {{ post.updated_at|date:"F d, Y \a\t g:i A" }}
+        </div>
+
+        <div class="post-content">
+            {{ post.content }}
+        </div>
+
+        <div class="post-actions">
+            <a href="{% url 'post-update' post.pk %}" class="btn-edit">Edit Post</a>
+            <a href="{% url 'post-delete' post.pk %}" class="btn-delete">Delete Post</a>
+        </div>
+    </div>
+</body>
+</html>
